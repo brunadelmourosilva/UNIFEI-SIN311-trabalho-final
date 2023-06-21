@@ -1,20 +1,74 @@
 package br.com.unifeicontabilidade.controllers;
 
+import br.com.unifeicontabilidade.models.BalancoPatrimonial;
+import br.com.unifeicontabilidade.models.Dre;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.List;
 
 @RestController
 @RequestMapping("/indices")
 public class IndicesController {
 
-    @PostMapping("/upload-csv-file")
-    public ResponseEntity<String> uploadCsvFile(@RequestParam("file")MultipartFile multipartFile) {
+    @PostMapping("/upload-csv-file-BP")
+    public ResponseEntity<String> uploadCsvFileBP(@RequestParam("file") MultipartFile multipartFile) throws IOException {
 
-        return new ResponseEntity<>( "File uploaded!", HttpStatus.CREATED);
+        try (Reader reader = new BufferedReader(new InputStreamReader(multipartFile.getInputStream()))) {
+
+            // create csv bean reader
+            final var csvToBean = new CsvToBeanBuilder<BalancoPatrimonial>(reader)
+                    .withType(BalancoPatrimonial.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
+
+            // convert `CsvToBean` object to list of users
+            List<BalancoPatrimonial> users = csvToBean.parse();
+
+            // TODO: save users in DB?
+
+        } catch (Exception ex) {
+            throw new IOException("Error to upload the file!");
+        }
+
+        return new ResponseEntity<>( "File uploaded for BP!", HttpStatus.CREATED);
     }
+
+    @PostMapping("/upload-csv-file-DRE")
+    public ResponseEntity<String> uploadCsvFileDRE(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+
+        try (Reader reader = new BufferedReader(new InputStreamReader(multipartFile.getInputStream()))) {
+
+            // create csv bean reader
+            final var csvToBean = new CsvToBeanBuilder<Dre>(reader)
+                    .withType(Dre.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
+
+            // convert `CsvToBean` object to list of users
+            List<Dre> users = csvToBean.parse();
+
+            // TODO: save users in DB?
+
+        } catch (Exception ex) {
+            throw new IOException("Error to upload the file!");
+        }
+
+        return new ResponseEntity<>( "File uploaded for DRE!", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/get-values")
+    public ResponseEntity<Void> getAllIndices() {
+
+        return new ResponseEntity<>( "File uploaded for DRE!", HttpStatus.CREATED);
+    }
+
 }
