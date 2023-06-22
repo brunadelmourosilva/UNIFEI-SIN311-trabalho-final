@@ -31,7 +31,7 @@ public class IndicesController {
                     .build();
 
             // convert `CsvToBean` object to list of users
-            List<BalancoPatrimonial> users = csvToBean.parse();
+            List<BalancoPatrimonial> balancoPatrimonialList = csvToBean.parse();
 
             // TODO: save users in DB?
 
@@ -66,7 +66,7 @@ public class IndicesController {
     }
 
     @GetMapping("/get-values")
-    public ResponseEntity<Void> getAllIndices() {
+    public ResponseEntity<String> getAllIndices() {
 
         return new ResponseEntity<>( "File uploaded for DRE!", HttpStatus.CREATED);
     }
