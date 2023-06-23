@@ -1,8 +1,7 @@
 package br.com.unifeicontabilidade.controllers;
 
-import br.com.unifeicontabilidade.models.BalancoPatrimonial;
+import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
 import br.com.unifeicontabilidade.models.Dre;
-import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +24,13 @@ public class IndicesController {
         try (Reader reader = new BufferedReader(new InputStreamReader(multipartFile.getInputStream()))) {
 
             // create csv bean reader
-            final var csvToBean = new CsvToBeanBuilder<BalancoPatrimonial>(reader)
-                    .withType(BalancoPatrimonial.class)
+            final var csvToBean = new CsvToBeanBuilder<DadosBalancoPatrimonial>(reader)
+                    .withType(DadosBalancoPatrimonial.class)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
 
             // convert `CsvToBean` object to list of users
-            List<BalancoPatrimonial> balancoPatrimonialList = csvToBean.parse();
+            List<DadosBalancoPatrimonial> balancoPatrimonialList = csvToBean.parse();
 
             // TODO: save users in DB?
 
