@@ -3,7 +3,9 @@ package br.com.unifeicontabilidade;
 import br.com.unifeicontabilidade.dto.IndicesDto;
 import br.com.unifeicontabilidade.factory.DadosPopuladosFactory;
 import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
+import org.springframework.stereotype.Service;
 
+@Service
 public class IndicesService {
 
 
