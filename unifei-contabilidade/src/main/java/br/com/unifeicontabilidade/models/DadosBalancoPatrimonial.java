@@ -2,102 +2,100 @@ package br.com.unifeicontabilidade.models;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
-
 @Data
 public class DadosBalancoPatrimonial {
 
     // Ativo circulante
-    private BigDecimal caixaInvestimentoCurtoPrazoTotal;
-    private BigDecimal caixa;
-    private BigDecimal caixaEquivalentesCaixa;
-    private BigDecimal investimentosCurtoPrazoAC;
+    private Double caixaInvestimentoCurtoPrazoTotal;
+    private Double caixa;
+    private Double caixaEquivalentesCaixa;
+    private Double investimentosCurtoPrazoAC;
 
-    private BigDecimal contasReceberLiquidoTotal;
-    private BigDecimal contasReceberComercioLiquido;
+    private Double contasReceberLiquidoTotal;
+    private Double contasReceberComercioLiquido;
 
-    private BigDecimal inventario;
+    private Double inventario;
 
-    private BigDecimal despesasAntecipadas;
+    private Double despesasAntecipadas;
 
-    private BigDecimal outrosAtivosCirculantesTotal;
+    private Double outrosAtivosCirculantesTotal;
 
-    private BigDecimal totalAtivoCirculante;
+    private Double totalAtivoCirculante;
 
     // Ativo não circulante
-    private BigDecimal imobilizadoLiquidoTotal;
-    private BigDecimal imobilizadoBruto;
-    private BigDecimal depreciacaoAcumulada;
+    private Double imobilizadoLiquidoTotal;
+    private Double imobilizadoBruto;
+    private Double depreciacaoAcumulada;
 
-    private BigDecimal agioLiquido;
+    private Double agioLiquido;
 
-    private BigDecimal intangiveisLiquido;
+    private Double intangiveisLiquido;
 
-    private BigDecimal investimentosLongoPrazo;
+    private Double investimentosLongoPrazo;
 
-    private BigDecimal realizavelLongoPrazo;
+    private Double realizavelLongoPrazo;
 
-    private BigDecimal outrosAtivosLongoPrazoTotal;
+    private Double outrosAtivosLongoPrazoTotal;
 
-    private BigDecimal outrosAtivos;
+    private Double outrosAtivos;
 
-    private BigDecimal totalAtivoNaoCirculante;
+    private Double totalAtivoNaoCirculante;
 
     // Total Ativo
-    private BigDecimal totalAtivo;
+    private Double totalAtivo;
 
     // Passivo Circulante
-    private BigDecimal aPagarAcumulado;
+    private Double aPagarAcumulado;
 
-    private BigDecimal aRecolherAuferidos;
+    private Double aRecolherAuferidos;
 
-    private BigDecimal investimentosCurtoPrazoPC;
+    private Double investimentosCurtoPrazoPC;
 
-    private BigDecimal notasAReceberEmprestimosCurtoPrazo;
+    private Double notasAReceberEmprestimosCurtoPrazo;
 
-    private BigDecimal parcelaCirculanteObrigacoesArrecadamentoMercantil;
+    private Double parcelaCirculanteObrigacoesArrecadamentoMercantil;
 
-    private BigDecimal outrosPassivosCirculantes;
+    private Double outrosPassivosCirculantes;
 
-    private BigDecimal totalPassivoCirculante;
+    private Double totalPassivoCirculante;
 
     // Passivo Não Circulante
-    private BigDecimal endividamentoLongoPrazoTotal;
-    private BigDecimal endividamentoLongoPrazo;
-    private BigDecimal obrigacoesArrecadamentoMercantil;
+    private Double endividamentoLongoPrazoTotal;
+    private Double endividamentoLongoPrazo;
+    private Double obrigacoesArrecadamentoMercantil;
 
-    private BigDecimal impostoRendaDiferido;
+    private Double impostoRendaDiferido;
 
-    private BigDecimal participacaoAcionistaNaoControladores;
+    private Double participacaoAcionistaNaoControladores;
 
-    private BigDecimal outrosPassivosTotal;
+    private Double outrosPassivosTotal;
 
-    private BigDecimal totalPassivoNaoCirculante;
+    private Double totalPassivoNaoCirculante;
 
     // Total Ativo
-    private BigDecimal totalPassivo;
+    private Double totalPassivo;
 
     // Patrimônio Líquido
-    private BigDecimal acoesPreferenciaisResgataveis;
+    private Double acoesPreferenciaisResgataveis;
 
-    private BigDecimal agioLiquidoPL;
+    private Double agioLiquidoPL;
 
-    private BigDecimal acoesOrdinariasTotal;
+    private Double acoesOrdinariasTotal;
 
-    private BigDecimal capitalSocialIntegralizadoAdicional;
+    private Double capitalSocialIntegralizadoAdicional;
 
-    private BigDecimal lucrosRetidosPrejuizosAcumulados;
+    private Double lucrosRetidosPrejuizosAcumulados;
 
-    private BigDecimal acoesTesourariaOrdinarias;
+    private Double acoesTesourariaOrdinarias;
 
-    private BigDecimal garantiaDividaCompraAcoes;
+    private Double garantiaDividaCompraAcoes;
 
-    private BigDecimal ganhoPerdaNaoRealizado;
+    private Double ganhoPerdaNaoRealizado;
 
-    private BigDecimal outrosPatrimoniosLiquidosTotal;
+    private Double outrosPatrimoniosLiquidosTotal;
 
     // Total Patrimônio Líquido
-    private BigDecimal totalPatrimonioLiquido;
+    private Double totalPatrimonioLiquido;
 
     public DadosBalancoPatrimonial() {
     }

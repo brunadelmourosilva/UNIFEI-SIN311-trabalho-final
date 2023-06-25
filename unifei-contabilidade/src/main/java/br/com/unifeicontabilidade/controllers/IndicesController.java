@@ -1,8 +1,11 @@
 package br.com.unifeicontabilidade.controllers;
 
+import br.com.unifeicontabilidade.IndicesService;
+import br.com.unifeicontabilidade.dto.IndicesDto;
 import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
 import br.com.unifeicontabilidade.models.Dre;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/indices")
 public class IndicesController {
+
+    @Autowired
+    private IndicesService indicesService;
 
     @PostMapping("/upload-csv-file-BP")
     public ResponseEntity<String> uploadCsvFileBP(@RequestParam("file") MultipartFile multipartFile) throws IOException {
@@ -65,9 +71,9 @@ public class IndicesController {
     }
 
     @GetMapping("/get-values")
-    public ResponseEntity<String> getAllIndices() {
+    public ResponseEntity<IndicesDto> getAllIndices(@RequestParam(value = "year") String year) {
 
-        return new ResponseEntity<>( "File uploaded for DRE!", HttpStatus.CREATED);
+        return new ResponseEntity<>(indicesService.calculateAllIndices(year), HttpStatus.OK);
     }
 
 }
