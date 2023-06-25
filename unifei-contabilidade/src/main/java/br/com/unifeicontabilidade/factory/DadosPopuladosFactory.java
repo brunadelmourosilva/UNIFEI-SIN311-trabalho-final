@@ -63,6 +63,24 @@ public class DadosPopuladosFactory {
         // Total Ativo
         bp2022.setTotalAtivo(189039.72);
 
+        // Passivo Circulante
+        bp2022.setAPagarAcumulado(31549.7);
+
+        bp2022.setARecolherAuferidos(null);
+
+        bp2022.setInvestimentosCurtoPrazoPC(232.61);
+
+        bp2022.setNotasAReceberEmprestimosCurtoPrazo(1652.09);
+
+        bp2022.setParcelaCirculanteObrigacoesArrecadamentoMercantil(671.28);
+
+        bp2022.setOutrosPassivosCirculantes(65418.06);
+
+        bp2022.setTotalPassivoCirculante(99523.73);
+
+        // Passivo Não Circulante
+
+
         // TODO: 6/25/2023 TERMINAR
 
         return bp2022;
