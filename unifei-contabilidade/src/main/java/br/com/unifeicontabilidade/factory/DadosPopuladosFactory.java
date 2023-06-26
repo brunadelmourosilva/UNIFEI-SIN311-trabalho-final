@@ -1,5 +1,6 @@
 package br.com.unifeicontabilidade.factory;
 
+import br.com.unifeicontabilidade.models.DadosDre;
 import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
 
 public class DadosPopuladosFactory {
@@ -18,6 +19,39 @@ public class DadosPopuladosFactory {
         }
 
         return new DadosBalancoPatrimonial();
+    }
+
+    public static DadosDre generateDREValuesByYear(String year) {
+
+        if("2022".equals(year)) {
+            return generateDRE2022();
+        }
+
+        if("2021".equals(year)) {
+            //// TODO: 6/26/2023
+            return null;
+        }
+
+        return new DadosDre();
+    }
+
+    private static DadosDre generateDRE2022() {
+        var dre2022 = new DadosDre();
+
+        // Receita
+        dre2022.setReceita(275423.74);
+        dre2022.setOutrasReceitastTotal(0.0);
+        dre2022.setCustoReceitasTotal(245679.26);
+
+        dre2022.setLucroBruto(29744.49);
+
+        // Receita Total
+        dre2022.setReceitaTotal(275423.74);
+
+        // Receitas Operacionais
+        //// TODO: 6/26/2023
+
+        return dre2022;
     }
 
     private static DadosBalancoPatrimonial generateBP2022() {

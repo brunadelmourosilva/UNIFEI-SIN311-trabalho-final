@@ -3,6 +3,7 @@ package br.com.unifeicontabilidade;
 import br.com.unifeicontabilidade.dto.IndicesDto;
 import br.com.unifeicontabilidade.factory.DadosPopuladosFactory;
 import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
+import br.com.unifeicontabilidade.models.DadosDre;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,21 +11,26 @@ public class IndicesService {
 
 
     public IndicesDto calculateAllIndices(String year) {
-        var dadosPopulados = DadosPopuladosFactory.generateBPValuesByYear(year);
+        var dadosPopuladosBP = DadosPopuladosFactory.generateBPValuesByYear(year);
+        var dadosPopuladosDRE = DadosPopuladosFactory.generateDREValuesByYear(year);
 
         var indicesDto = new IndicesDto();
 
         // Indices de estrutura de capital
-        indicesDto.getIndicesEstruturaCapital().setParticipacaoDeCapitalDeTerceiros(calculatePTC(dadosPopulados));
-        indicesDto.getIndicesEstruturaCapital().setComposicaoDoEndividamento(calculateEND(dadosPopulados));
-        indicesDto.getIndicesEstruturaCapital().setImobilizacaoDoPatrimonioLiquido(calculateIPL(dadosPopulados));
+        indicesDto.getIndicesEstruturaCapital().setParticipacaoDeCapitalDeTerceiros(calculatePTC(dadosPopuladosBP));
+        indicesDto.getIndicesEstruturaCapital().setComposicaoDoEndividamento(calculateEND(dadosPopuladosBP));
+        indicesDto.getIndicesEstruturaCapital().setImobilizacaoDoPatrimonioLiquido(calculateIPL(dadosPopuladosBP));
 
         // Indices de liquidez
-        indicesDto.getIndicesLiquidez().setLiquidezGeral(calculateLG(dadosPopulados));
-        indicesDto.getIndicesLiquidez().setLiquidezCorrente(calculateLC(dadosPopulados));
-        indicesDto.getIndicesLiquidez().setLiquidezSeca(calculateLS(dadosPopulados));
+        indicesDto.getIndicesLiquidez().setLiquidezGeral(calculateLG(dadosPopuladosBP));
+        indicesDto.getIndicesLiquidez().setLiquidezCorrente(calculateLC(dadosPopuladosBP));
+        indicesDto.getIndicesLiquidez().setLiquidezSeca(calculateLS(dadosPopuladosBP));
 
         // TODO RENTABILIDADE
+        // Indices de rentabilidade
+        indicesDto.getIndicesRentabilidade().setGiroDoAtivo(calculateGA(dadosPopuladosBP, dadosPopuladosDRE));
+        indicesDto.getIndicesRentabilidade().setMargemLiquida(calculateML(dadosPopuladosBP, dadosPopuladosDRE));
+
 
         //TODO + 3 INDICES
 
@@ -64,5 +70,21 @@ public class IndicesService {
     private Double calculateLS(DadosBalancoPatrimonial bp) {
         //TODO
         return null;
+    }
+
+    private Double calculateGA(DadosBalancoPatrimonial bp, DadosDre dre) {
+        return dre.getReceitaTotal() / bp.getTotalAtivo();
+    }
+
+    private Double calculateML(DadosBalancoPatrimonial bp, DadosDre dre) {
+        //return dre.getLucroLiquido() / dre.getReceitaTotal();
+    }
+
+    private Double calculateRA(DadosBalancoPatrimonial bp, DadosDre dre) {
+        //return dre.getLucroLiquido() / bp.getTotalAtivo();
+    }
+
+    private Double calculateRPL(DadosBalancoPatrimonial bp, DadosDre dre) {
+        //return dre.getLucroLiquido() / MEDIA PL;
     }
 }

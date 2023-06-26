@@ -7,9 +7,11 @@ public class IndicesDto {
 
     private IndicesEstruturaCapital indicesEstruturaCapital;
     private IndicesLiquidez indicesLiquidez;
+    private IndicesRentabilidade indicesRentabilidade;
 
     {
         this.indicesEstruturaCapital = new IndicesEstruturaCapital();
         this.indicesLiquidez = new IndicesLiquidez();
+        this.indicesRentabilidade = new IndicesRentabilidade();
     }
 }
