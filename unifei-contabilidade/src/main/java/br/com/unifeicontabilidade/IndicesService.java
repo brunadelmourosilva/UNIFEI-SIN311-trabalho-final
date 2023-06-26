@@ -14,9 +14,9 @@ public class IndicesService {
 
         var indicesDto = new IndicesDto();
 
-        indicesDto.getIndicesEstruturaCapital().setParticipacaoDeCapitalDeTerceiros(calculatePTC(dadosPopulados));
+        //indicesDto.getIndicesEstruturaCapital().setParticipacaoDeCapitalDeTerceiros(calculatePTC(dadosPopulados));
         indicesDto.getIndicesEstruturaCapital().setComposicaoDoEndividamento(calculateEND(dadosPopulados));
-        indicesDto.getIndicesEstruturaCapital().setImobilizacaoDoPatrimonioLiquido(calculateIPL(dadosPopulados));
+        //indicesDto.getIndicesEstruturaCapital().setImobilizacaoDoPatrimonioLiquido(calculateIPL(dadosPopulados));
 
 
         return indicesDto;
@@ -32,7 +32,7 @@ public class IndicesService {
     private Double calculateEND(DadosBalancoPatrimonial bp) {
 
         return
-                (bp.getTotalPassivoCirculante() + bp.getTotalPassivoCirculante()) / bp.getTotalPassivoNaoCirculante();
+                bp.getTotalPassivoCirculante() / (bp.getTotalPassivoCirculante() + bp.getTotalPassivoNaoCirculante());
     }
 
     private Double calculateIPL(DadosBalancoPatrimonial bp) {

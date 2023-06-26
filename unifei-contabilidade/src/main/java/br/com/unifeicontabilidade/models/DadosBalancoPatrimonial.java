@@ -72,7 +72,7 @@ public class DadosBalancoPatrimonial {
 
     private Double totalPassivoNaoCirculante;
 
-    // Total Ativo
+    // Total Passivo
     private Double totalPassivo;
 
     // Patrimônio Líquido
