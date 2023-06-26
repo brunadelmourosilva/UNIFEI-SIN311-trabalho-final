@@ -91,7 +91,29 @@ public class DadosPopuladosFactory {
         // Total Passivo
         bp2022.setTotalPassivo(118605.52);
 
-        // TODO: 6/25/2023 TERMINAR
+        // Patrimônio Líquido
+        bp2022.setAcoesPreferenciaisResgataveis(null);
+
+        bp2022.setAgioLiquidoPL(null);
+
+        bp2022.setAgioLiquidoPL(null);
+
+        bp2022.setAcoesOrdinariasTotal(30478.54);
+
+        bp2022.setCapitalSocialIntegralizadoAdicional(27795.88);
+
+        bp2022.setLucrosRetidosPrejuizosAcumulados(14897.14);
+
+        bp2022.setAcoesTesourariaOrdinarias(-2914.86);
+
+        bp2022.setGarantiaDividaCompraAcoes(null);
+
+        bp2022.setGanhoPerdaNaoRealizado(null);
+
+        bp2022.setOutrosPatrimoniosLiquidosTotal(177.48);
+
+        // Total Patrimônio Líquido
+        bp2022.setTotalPatrimonioLiquido(70434.2);
 
         return bp2022;
     }

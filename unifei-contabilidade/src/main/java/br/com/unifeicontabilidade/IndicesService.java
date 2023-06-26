@@ -14,9 +14,19 @@ public class IndicesService {
 
         var indicesDto = new IndicesDto();
 
-        //indicesDto.getIndicesEstruturaCapital().setParticipacaoDeCapitalDeTerceiros(calculatePTC(dadosPopulados));
+        // Indices de estrutura de capital
+        indicesDto.getIndicesEstruturaCapital().setParticipacaoDeCapitalDeTerceiros(calculatePTC(dadosPopulados));
         indicesDto.getIndicesEstruturaCapital().setComposicaoDoEndividamento(calculateEND(dadosPopulados));
-        //indicesDto.getIndicesEstruturaCapital().setImobilizacaoDoPatrimonioLiquido(calculateIPL(dadosPopulados));
+        indicesDto.getIndicesEstruturaCapital().setImobilizacaoDoPatrimonioLiquido(calculateIPL(dadosPopulados));
+
+        // Indices de liquidez
+        indicesDto.getIndicesLiquidez().setLiquidezGeral(calculateLG(dadosPopulados));
+        indicesDto.getIndicesLiquidez().setLiquidezCorrente(calculateLC(dadosPopulados));
+        indicesDto.getIndicesLiquidez().setLiquidezSeca(calculateLS(dadosPopulados));
+
+        // TODO RENTABILIDADE
+
+        //TODO + 3 INDICES
 
 
         return indicesDto;
@@ -41,5 +51,18 @@ public class IndicesService {
                 bp.getImobilizadoLiquidoTotal() / bp.getTotalPatrimonioLiquido();
     }
 
+    private Double calculateLG(DadosBalancoPatrimonial bp) {
 
+        return (bp.getTotalAtivoCirculante() + bp.getRealizavelLongoPrazo()) / (bp.getTotalPassivoCirculante() + bp.getTotalPassivoNaoCirculante());
+    }
+
+    private Double calculateLC(DadosBalancoPatrimonial bp) {
+
+        return (bp.getTotalAtivoCirculante()) / (bp.getTotalPassivoCirculante());
+    }
+
+    private Double calculateLS(DadosBalancoPatrimonial bp) {
+        //TODO
+        return null;
+    }
 }

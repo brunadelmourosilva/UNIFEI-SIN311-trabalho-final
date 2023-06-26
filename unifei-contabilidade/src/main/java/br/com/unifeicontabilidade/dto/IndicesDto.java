@@ -6,8 +6,10 @@ import lombok.Data;
 public class IndicesDto {
 
     private IndicesEstruturaCapital indicesEstruturaCapital;
+    private IndicesLiquidez indicesLiquidez;
 
     {
         this.indicesEstruturaCapital = new IndicesEstruturaCapital();
+        this.indicesLiquidez = new IndicesLiquidez();
     }
 }
