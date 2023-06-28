@@ -26,10 +26,11 @@ public class IndicesService {
         indicesDto.getIndicesLiquidez().setLiquidezCorrente(calculateLC(dadosPopuladosBP));
         indicesDto.getIndicesLiquidez().setLiquidezSeca(calculateLS(dadosPopuladosBP));
 
-        // TODO RENTABILIDADE
         // Indices de rentabilidade
         indicesDto.getIndicesRentabilidade().setGiroDoAtivo(calculateGA(dadosPopuladosBP, dadosPopuladosDRE));
         indicesDto.getIndicesRentabilidade().setMargemLiquida(calculateML(dadosPopuladosBP, dadosPopuladosDRE));
+        indicesDto.getIndicesRentabilidade().setRentabilidadeDoAtivo(calculateRA(dadosPopuladosBP, dadosPopuladosDRE));
+        indicesDto.getIndicesRentabilidade().setRentabilidadeDoPatrimonioLiquido(calculateRPL(dadosPopuladosBP, dadosPopuladosDRE));
 
 
         //TODO + 3 INDICES
@@ -68,7 +69,7 @@ public class IndicesService {
     }
 
     private Double calculateLS(DadosBalancoPatrimonial bp) {
-        //TODO
+        //TODO ALEX
         return null;
     }
 
@@ -77,14 +78,16 @@ public class IndicesService {
     }
 
     private Double calculateML(DadosBalancoPatrimonial bp, DadosDre dre) {
-        //return dre.getLucroLiquido() / dre.getReceitaTotal();
+        return dre.getLucroLiquido() / dre.getReceitaTotal();
     }
 
     private Double calculateRA(DadosBalancoPatrimonial bp, DadosDre dre) {
-        //return dre.getLucroLiquido() / bp.getTotalAtivo();
+        return dre.getLucroLiquido() / bp.getTotalAtivo();
     }
 
     private Double calculateRPL(DadosBalancoPatrimonial bp, DadosDre dre) {
+        //// TODO ALEX
         //return dre.getLucroLiquido() / MEDIA PL;
+        return null;
     }
 }

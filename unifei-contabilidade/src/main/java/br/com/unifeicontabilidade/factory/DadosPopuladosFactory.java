@@ -28,8 +28,7 @@ public class DadosPopuladosFactory {
         }
 
         if("2021".equals(year)) {
-            //// TODO: 6/26/2023
-            return null;
+            return generateDRE2021();
         }
 
         return new DadosDre();
@@ -49,9 +48,43 @@ public class DadosPopuladosFactory {
         dre2022.setReceitaTotal(275423.74);
 
         // Receitas Operacionais
-        //// TODO: 6/26/2023
+        dre2022.setDespesasComVendasGeraisAdm(20506.02);
+        dre2022.setPesquisaDesenvolvimento(2448.84);
+        dre2022.setDepreciacaoAmortizacao(0.0);
+        dre2022.setDespesasJuros(-222.8);
+        dre2022.setDespesasExtraordinarias(0.0);
+        dre2022.setOutrasDespesasOperacionaisLiquidas(84.73);
+
+        // Total Despesas Operacionais
+        dre2022.setDespesasOperacionaisTotal(268496.0);
+
+        // Receitas Operacionais
+        dre2022.setReceitasOperacionaisTotal(6927.7);
+
+        dre2022.setReceitaJuros(0.0);
+        dre2022.setGanhoVendaAtivos(-4.0);
+        dre2022.setOutrosLiquidos(-942.12);
+        dre2022.setLucroAntesImpostos(7873.82);
+        dre2022.setProvisaoImpostoRenda(2270.53);
+        dre2022.setLucroLiquidoDepoisDespesasComImposto(5603.29);
+        dre2022.setParticipacaoAcionistasMinoritarios(4486.74);
+        dre2022.setPatrimonioLiquidoControladoras(0.0);
+        dre2022.setAjusteDeUS(0.0);
+
+        dre2022.setLucroLiquidoAntesItensExtraordinarios(5003.69);
+        dre2022.setItensExtraordinarios(0.0);
+
+        // Lucro Líquido
+        dre2022.setLucroLiquido(5003.69);
 
         return dre2022;
+    }
+
+    private static DadosDre generateDRE2021() {
+        //// TODO: 6/28/2023 ALEX
+        var dre2021 = new DadosDre();
+
+        return dre2021;
     }
 
     private static DadosBalancoPatrimonial generateBP2022() {
@@ -155,7 +188,7 @@ public class DadosPopuladosFactory {
     private static DadosBalancoPatrimonial generateBP2021() {
         var bp2021 = new DadosBalancoPatrimonial();
 
-        // TODO: 6/25/2023 TERMINAR
+        // TODO: 6/25/2023 ALEX
 
         return bp2021;
     }

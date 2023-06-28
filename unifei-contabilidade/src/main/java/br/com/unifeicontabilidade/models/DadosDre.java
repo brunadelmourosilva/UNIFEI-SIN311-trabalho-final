@@ -31,5 +31,31 @@ public class DadosDre {
     // Total Despesas Operacionais
     private Double despesasOperacionaisTotal;
 
-    //// TODO: 6/26/2023 Receitas Operacionais
+    // Receitas Operacionais
+    private Double receitasOperacionaisTotal;
+
+    private Double receitaJuros;
+
+    private Double ganhoVendaAtivos;
+
+    private Double outrosLiquidos;
+
+    private Double lucroAntesImpostos;
+
+    private Double provisaoImpostoRenda;
+
+    private Double lucroLiquidoDepoisDespesasComImposto;
+
+    private Double participacaoAcionistasMinoritarios;
+
+    private Double patrimonioLiquidoControladoras;
+
+    private Double ajusteDeUS;
+
+    private Double lucroLiquidoAntesItensExtraordinarios;
+
+    private Double itensExtraordinarios;
+
+    // Lucro Líquido
+    private Double lucroLiquido;
 }
