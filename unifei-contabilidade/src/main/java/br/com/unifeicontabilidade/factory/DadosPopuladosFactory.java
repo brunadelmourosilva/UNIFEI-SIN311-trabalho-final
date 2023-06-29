@@ -3,12 +3,15 @@ package br.com.unifeicontabilidade.factory;
 import br.com.unifeicontabilidade.models.DadosDre;
 import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
 
+/**
+ * https://br.investing.com/equities/acer-income-statement
+ * */
 public class DadosPopuladosFactory {
 
     private DadosPopuladosFactory(){}
 
 
-    public static DadosBalancoPatrimonial generateBPValuesByYear(String year) {
+    public static DadosBalancoPatrimonial generateBPValuesByYearForAcer(String year) {
 
         if("2022".equals(year)) {
             return generateBP2022();
@@ -21,7 +24,7 @@ public class DadosPopuladosFactory {
         return new DadosBalancoPatrimonial();
     }
 
-    public static DadosDre generateDREValuesByYear(String year) {
+    public static DadosDre generateDREValuesByYearForAcer(String year) {
 
         if("2022".equals(year)) {
             return generateDRE2022();
@@ -56,7 +59,7 @@ public class DadosPopuladosFactory {
         dre2022.setOutrasDespesasOperacionaisLiquidas(84.73);
 
         // Total Despesas Operacionais
-        dre2022.setDespesasOperacionaisTotal(268496.0);
+        dre2022.setDespesasOperacionaisTotal(268496.05);
 
         // Receitas Operacionais
         dre2022.setReceitasOperacionaisTotal(6927.7);

@@ -11,8 +11,8 @@ public class IndicesService {
 
 
     public IndicesDto calculateAllIndices(String year) {
-        var dadosPopuladosBP = DadosPopuladosFactory.generateBPValuesByYear(year);
-        var dadosPopuladosDRE = DadosPopuladosFactory.generateDREValuesByYear(year);
+        var dadosPopuladosBP = DadosPopuladosFactory.generateBPValuesByYearForAcer(year);
+        var dadosPopuladosDRE = DadosPopuladosFactory.generateDREValuesByYearForAcer(year);
 
         var indicesDto = new IndicesDto();
 
@@ -32,30 +32,31 @@ public class IndicesService {
         indicesDto.getIndicesRentabilidade().setRentabilidadeDoAtivo(calculateRA(dadosPopuladosBP, dadosPopuladosDRE));
         indicesDto.getIndicesRentabilidade().setRentabilidadeDoPatrimonioLiquido(calculateRPL(dadosPopuladosBP, dadosPopuladosDRE));
 
-
         //TODO + 3 INDICES
 
+        // Indices de lucratividade
+        indicesDto.getIndicesLucratividade().setMargemBruta(calculateMB(dadosPopuladosDRE));
+        indicesDto.getIndicesLucratividade().setMargemOperacional(calculateMO(dadosPopuladosDRE));
+        indicesDto.getIndicesLucratividade().setMargemEbitda(calculateMargemEbitda(dadosPopuladosBP, dadosPopuladosDRE));
+
+        // Indices de endividamento
 
         return indicesDto;
     }
 
-    // Indices de estrutura de capital
     private Double calculatePTC(DadosBalancoPatrimonial bp) {
 
-        return
-                (bp.getTotalPassivoCirculante() + bp.getTotalPassivoNaoCirculante()) / bp.getTotalPatrimonioLiquido();
+        return (bp.getTotalPassivoCirculante() + bp.getTotalPassivoNaoCirculante()) / bp.getTotalPatrimonioLiquido();
     }
 
     private Double calculateEND(DadosBalancoPatrimonial bp) {
 
-        return
-                bp.getTotalPassivoCirculante() / (bp.getTotalPassivoCirculante() + bp.getTotalPassivoNaoCirculante());
+        return bp.getTotalPassivoCirculante() / (bp.getTotalPassivoCirculante() + bp.getTotalPassivoNaoCirculante());
     }
 
     private Double calculateIPL(DadosBalancoPatrimonial bp) {
 
-        return
-                bp.getImobilizadoLiquidoTotal() / bp.getTotalPatrimonioLiquido();
+        return bp.getImobilizadoLiquidoTotal() / bp.getTotalPatrimonioLiquido();
     }
 
     private Double calculateLG(DadosBalancoPatrimonial bp) {
@@ -90,4 +91,29 @@ public class IndicesService {
         //return dre.getLucroLiquido() / MEDIA PL;
         return null;
     }
+
+    private Double calculateMB(DadosDre dre) {
+        return dre.getLucroBruto() / dre.getReceitaTotal();
+    }
+
+    //// TODO: 6/28/2023 dúvida prof
+    private Double calculateMO(DadosDre dre) {
+
+        return dre.getReceitasOperacionaisTotal() / dre.getReceitaTotal();
+    }
+
+    // // TODO: 6/28/2023 livro: página 121 - como calcular o EBITDA
+    //// TODO: 6/28/2023 dúvida prof
+    private Double calculateMargemEbitda(DadosBalancoPatrimonial bp, DadosDre dre) {
+        var ebitda =
+                dre.getReceitasOperacionaisTotal() +
+                dre.getDespesasOperacionaisTotal() +
+                bp.getAgioLiquido();
+
+        return ebitda / dre.getReceitaTotal();
+    }
 }
+
+//// TODO: 6/28/2023
+//referencias para a doc
+//https://plataforma.bvirtual.com.br/Acervo/Publicacao/1799
