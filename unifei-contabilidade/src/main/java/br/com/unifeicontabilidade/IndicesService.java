@@ -96,7 +96,7 @@ public class IndicesService {
         return dre.getLucroBruto() / dre.getReceitaTotal();
     }
 
-    //// TODO: 6/28/2023 dúvida prof
+    //// TODO: 6/28/2023 dúvida prof - lucro operacional
     private Double calculateMO(DadosDre dre) {
 
         return dre.getReceitasOperacionaisTotal() / dre.getReceitaTotal();
@@ -105,6 +105,7 @@ public class IndicesService {
     // // TODO: 6/28/2023 livro: página 121 - como calcular o EBITDA
     //// TODO: 6/28/2023 dúvida prof
     private Double calculateMargemEbitda(DadosBalancoPatrimonial bp, DadosDre dre) {
+        //// TODO: 6/29/2023 alex
         var ebitda =
                 dre.getReceitasOperacionaisTotal() +
                 dre.getDespesasOperacionaisTotal() +

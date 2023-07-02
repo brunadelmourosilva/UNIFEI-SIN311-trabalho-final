@@ -3,7 +3,8 @@ package br.com.unifeicontabilidade.factory;
 import br.com.unifeicontabilidade.models.DadosDre;
 import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
 
-/**
+/** References
+ * https://br.investing.com/equities/acer-balance-sheet
  * https://br.investing.com/equities/acer-income-statement
  * */
 public class DadosPopuladosFactory {
@@ -84,8 +85,47 @@ public class DadosPopuladosFactory {
     }
 
     private static DadosDre generateDRE2021() {
-        //// TODO: 6/28/2023 ALEX
         var dre2021 = new DadosDre();
+
+        // Receita
+        dre2021.setReceita(319005.46);
+        dre2021.setOutrasReceitastTotal(0.0);
+        dre2021.setCustoReceitasTotal(281814.4);
+
+        dre2021.setLucroBruto(37191.069);
+
+        // Receita Total
+        dre2021.setReceitaTotal(319005.46);
+
+        // Receitas Operacionais
+        dre2021.setDespesasComVendasGeraisAdm(20494.3);
+        dre2021.setPesquisaDesenvolvimento(2646.1);
+        dre2021.setDepreciacaoAmortizacao(0.0);
+        dre2021.setDespesasJuros(-336.68);
+        dre2021.setDespesasExtraordinarias(-3.07);
+        dre2021.setOutrasDespesasOperacionaisLiquidas(224.4);
+
+        // Total Despesas Operacionais
+        dre2021.setDespesasOperacionaisTotal(304842.6);
+
+        // Receitas Operacionais
+        dre2021.setReceitasOperacionaisTotal(14162.86);
+
+        dre2021.setReceitaJuros(1198.46);
+        dre2021.setGanhoVendaAtivos(43.77);
+        dre2021.setOutrosLiquidos(-1316.56);
+        dre2021.setLucroAntesImpostos(15435.64);
+        dre2021.setProvisaoImpostoRenda(4148.33);
+        dre2021.setLucroLiquidoDepoisDespesasComImposto(11287.31);
+        dre2021.setParticipacaoAcionistasMinoritarios(2346.23);
+        dre2021.setPatrimonioLiquidoControladoras(0.0);
+        dre2021.setAjusteDeUS(0.0);
+
+        dre2021.setLucroLiquidoAntesItensExtraordinarios(10897.43);
+        dre2021.setItensExtraordinarios(0.0);
+
+        // Lucro Líquido
+        dre2021.setLucroLiquido(10897.43);
 
         return dre2021;
     }
@@ -95,7 +135,7 @@ public class DadosPopuladosFactory {
 
         // Ativo circulante
         bp2022.setCaixaInvestimentoCurtoPrazoTotal(47962.73);
-        bp2022.setCaixa(null);
+        bp2022.setCaixa(0.0);
         bp2022.setCaixaEquivalentesCaixa(46842.9);
         bp2022.setInvestimentosCurtoPrazoAC(345.88);
 
@@ -136,7 +176,7 @@ public class DadosPopuladosFactory {
         // Passivo Circulante
         bp2022.setAPagarAcumulado(31549.7);
 
-        bp2022.setARecolherAuferidos(null);
+        bp2022.setARecolherAuferidos(0.0);
 
         bp2022.setInvestimentosCurtoPrazoPC(232.61);
 
@@ -162,11 +202,9 @@ public class DadosPopuladosFactory {
         bp2022.setTotalPassivo(118605.52);
 
         // Patrimônio Líquido
-        bp2022.setAcoesPreferenciaisResgataveis(null);
+        bp2022.setAcoesPreferenciaisResgataveis(0.0);
 
-        bp2022.setAgioLiquidoPL(null);
-
-        bp2022.setAgioLiquidoPL(null);
+        bp2022.setAgioLiquidoPL(0.0);
 
         bp2022.setAcoesOrdinariasTotal(30478.54);
 
@@ -176,9 +214,9 @@ public class DadosPopuladosFactory {
 
         bp2022.setAcoesTesourariaOrdinarias(-2914.86);
 
-        bp2022.setGarantiaDividaCompraAcoes(null);
+        bp2022.setGarantiaDividaCompraAcoes(0.0);
 
-        bp2022.setGanhoPerdaNaoRealizado(null);
+        bp2022.setGanhoPerdaNaoRealizado(0.0);
 
         bp2022.setOutrosPatrimoniosLiquidosTotal(177.48);
 
@@ -191,7 +229,95 @@ public class DadosPopuladosFactory {
     private static DadosBalancoPatrimonial generateBP2021() {
         var bp2021 = new DadosBalancoPatrimonial();
 
-        // TODO: 6/25/2023 ALEX
+        // Ativo circulante
+        bp2021.setCaixaInvestimentoCurtoPrazoTotal(47242.28);
+        bp2021.setCaixa(36355.86);
+        bp2021.setCaixaEquivalentesCaixa(44619.54);
+        bp2021.setInvestimentosCurtoPrazoAC(80.0);
+
+        bp2021.setContasReceberLiquidoTotal(67346.32);
+
+        bp2021.setContasReceberComercioLiquido(64492.12);
+
+        bp2021.setInventario(58967.84);
+
+        bp2021.setDespesasAntecipadas(494.0);
+
+        bp2021.setOutrosAtivosCirculantesTotal(1044.79);
+
+        bp2021.setTotalAtivoCirculante(175095.24);
+
+        // Ativo não circulante
+        bp2021.setImobilizadoLiquidoTotal(5792.51);
+        bp2021.setImobilizadoBruto(13429.54);
+        bp2021.setDepreciacaoAcumulada(-7637.03);
+
+        bp2021.setAgioLiquido(15816.97);
+
+        bp2021.setIntangiveisLiquido(16527.28);
+
+        bp2021.setInvestimentosLongoPrazo(9938.99);
+
+        bp2021.setRealizavelLongoPrazo(2854.2);
+
+        bp2021.setOutrosAtivosLongoPrazoTotal(3762.66);
+
+        bp2021.setOutrosAtivos(-16856.28);
+
+        bp2021.setTotalAtivoNaoCirculante(39693.07);
+
+        // Total Ativo
+        bp2021.setTotalAtivo(214788.31);
+
+        // Passivo Circulante
+        bp2021.setAPagarAcumulado(57897.7);
+
+        bp2021.setARecolherAuferidos(0.0);
+
+        bp2021.setInvestimentosCurtoPrazoPC(237.57);
+
+        bp2021.setNotasAReceberEmprestimosCurtoPrazo(237.57);
+
+        bp2021.setParcelaCirculanteObrigacoesArrecadamentoMercantil(550.67);
+
+        bp2021.setOutrosPassivosCirculantes(69483.52);
+
+        bp2021.setTotalPassivoCirculante(129423.06);
+
+        // Passivo Não Circulante
+        bp2021.setEndividamentoLongoPrazoTotal(11420.53);
+        bp2021.setEndividamentoLongoPrazo(10099.82);
+        bp2021.setObrigacoesArrecadamentoMercantil(1320.71);
+        bp2021.setImpostoRendaDiferido(4643.83);
+        bp2021.setParticipacaoAcionistaNaoControladores(2346.23);
+        bp2021.setOutrosPassivosTotal(-1595.39);
+
+        bp2021.setTotalPassivoNaoCirculante(19333.31);
+
+        // Total Passivo
+        bp2021.setTotalPassivo(148765.37);
+
+        // Patrimônio Líquido
+        bp2021.setAcoesPreferenciaisResgataveis(0.0);
+
+        bp2021.setAgioLiquidoPL(0.0);
+
+        bp2021.setAcoesOrdinariasTotal(30478.54);
+
+        bp2021.setCapitalSocialIntegralizadoAdicional(30478.54);
+
+        bp2021.setLucrosRetidosPrejuizosAcumulados(16886.39);
+
+        bp2021.setAcoesTesourariaOrdinarias(-2914.86);
+
+        bp2021.setGarantiaDividaCompraAcoes(0.0);
+
+        bp2021.setGanhoPerdaNaoRealizado(746.18);
+
+        bp2021.setOutrosPatrimoniosLiquidosTotal(-5941.4);
+
+        // Total Patrimônio Líquido
+        bp2021.setTotalPatrimonioLiquido(66022.94);
 
         return bp2021;
     }
