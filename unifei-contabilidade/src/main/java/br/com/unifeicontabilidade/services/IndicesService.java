@@ -1,4 +1,4 @@
-package br.com.unifeicontabilidade;
+package br.com.unifeicontabilidade.services;
 
 import br.com.unifeicontabilidade.dto.IndicesDto;
 import br.com.unifeicontabilidade.factory.DadosPopuladosFactory;
@@ -28,9 +28,9 @@ public class IndicesService {
 
         // Indices de rentabilidade
         indicesDto.getIndicesRentabilidade().setGiroDoAtivo(calculateGA(dadosPopuladosBP, dadosPopuladosDRE));
-        indicesDto.getIndicesRentabilidade().setMargemLiquida(calculateML(dadosPopuladosBP, dadosPopuladosDRE));
+        indicesDto.getIndicesRentabilidade().setMargemLiquida(calculateML(dadosPopuladosDRE));
         indicesDto.getIndicesRentabilidade().setRentabilidadeDoAtivo(calculateRA(dadosPopuladosBP, dadosPopuladosDRE));
-        indicesDto.getIndicesRentabilidade().setRentabilidadeDoPatrimonioLiquido(calculateRPL(dadosPopuladosBP, dadosPopuladosDRE));
+        indicesDto.getIndicesRentabilidade().setRentabilidadeDoPatrimonioLiquido(calculateRPL(dadosPopuladosDRE));
 
         //TODO + 3 INDICES
 
@@ -66,19 +66,20 @@ public class IndicesService {
 
     private Double calculateLC(DadosBalancoPatrimonial bp) {
 
-        return (bp.getTotalAtivoCirculante()) / (bp.getTotalPassivoCirculante());
+        return bp.getTotalAtivoCirculante() / bp.getTotalPassivoCirculante();
     }
 
     private Double calculateLS(DadosBalancoPatrimonial bp) {
-        //TODO ALEX
-        return null;
+        var disponivel = bp.getCaixaInvestimentoCurtoPrazoTotal() + bp.getContasReceberLiquidoTotal();
+
+        return disponivel / bp.getTotalPassivoCirculante();
     }
 
     private Double calculateGA(DadosBalancoPatrimonial bp, DadosDre dre) {
         return dre.getReceitaTotal() / bp.getTotalAtivo();
     }
 
-    private Double calculateML(DadosBalancoPatrimonial bp, DadosDre dre) {
+    private Double calculateML(DadosDre dre) {
         return dre.getLucroLiquido() / dre.getReceitaTotal();
     }
 
@@ -86,10 +87,13 @@ public class IndicesService {
         return dre.getLucroLiquido() / bp.getTotalAtivo();
     }
 
-    private Double calculateRPL(DadosBalancoPatrimonial bp, DadosDre dre) {
-        //// TODO ALEX
-        //return dre.getLucroLiquido() / MEDIA PL;
-        return null;
+    private Double calculateRPL(DadosDre dre) {
+        var pl2022 = DadosPopuladosFactory.generateBPValuesByYearForAcer("2022");
+        var pl2021 = DadosPopuladosFactory.generateBPValuesByYearForAcer("2021");
+
+        var plMedio2021E2022 = (pl2022.getTotalPatrimonioLiquido() + pl2021.getTotalPatrimonioLiquido()) / 2;
+
+        return dre.getLucroLiquido() / plMedio2021E2022;
     }
 
     private Double calculateMB(DadosDre dre) {

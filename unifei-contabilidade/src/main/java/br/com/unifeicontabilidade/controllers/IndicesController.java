@@ -1,6 +1,6 @@
 package br.com.unifeicontabilidade.controllers;
 
-import br.com.unifeicontabilidade.IndicesService;
+import br.com.unifeicontabilidade.services.IndicesService;
 import br.com.unifeicontabilidade.dto.IndicesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
