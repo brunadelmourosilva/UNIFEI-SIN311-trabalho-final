@@ -1,7 +1,7 @@
 package br.com.unifeicontabilidade.controllers;
 
 import br.com.unifeicontabilidade.services.IndicesService;
-import br.com.unifeicontabilidade.dto.IndicesDto;
+import br.com.unifeicontabilidade.dto.Indices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class IndicesController {
     private IndicesService indicesService;
 
     @GetMapping("/get-values")
-    public ResponseEntity<IndicesDto> getAllIndices(@RequestParam(value = "year") String year) {
+    public ResponseEntity<Indices> getAllIndices(@RequestParam(value = "year") String year) {
 
         return new ResponseEntity<>(indicesService.calculateAllIndices(year), HttpStatus.OK);
     }

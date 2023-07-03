@@ -3,7 +3,7 @@ package br.com.unifeicontabilidade.dto;
 import lombok.Data;
 
 @Data
-public class IndicesDto {
+public class Indices {
 
     private IndicesEstruturaCapital indicesEstruturaCapital;
     private IndicesLiquidez indicesLiquidez;

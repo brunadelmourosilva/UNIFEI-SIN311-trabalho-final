@@ -1,6 +1,6 @@
 package br.com.unifeicontabilidade.services;
 
-import br.com.unifeicontabilidade.dto.IndicesDto;
+import br.com.unifeicontabilidade.dto.Indices;
 import br.com.unifeicontabilidade.factory.DadosPopuladosFactory;
 import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
 import br.com.unifeicontabilidade.models.DadosDre;
@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 public class IndicesService {
 
 
-    public IndicesDto calculateAllIndices(String year) {
+    public Indices calculateAllIndices(String year) {
         var dadosPopuladosBP = DadosPopuladosFactory.generateBPValuesByYearForAcer(year);
         var dadosPopuladosDRE = DadosPopuladosFactory.generateDREValuesByYearForAcer(year);
 
-        var indicesDto = new IndicesDto();
+        var indicesDto = new Indices();
 
         // Indices de estrutura de capital
         indicesDto.getIndicesEstruturaCapital().setParticipacaoDeCapitalDeTerceiros(calculatePTC(dadosPopuladosBP));
