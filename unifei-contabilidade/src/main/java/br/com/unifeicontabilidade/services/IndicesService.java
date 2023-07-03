@@ -6,6 +6,10 @@ import br.com.unifeicontabilidade.models.DadosBalancoPatrimonial;
 import br.com.unifeicontabilidade.models.DadosDre;
 import org.springframework.stereotype.Service;
 
+/**
+ * referências para os cálculos
+   https://plataforma.bvirtual.com.br/Acervo/Publicacao/1799
+ **/
 @Service
 public class IndicesService {
 
@@ -32,14 +36,36 @@ public class IndicesService {
         indicesDto.getIndicesRentabilidade().setRentabilidadeDoAtivo(calculateRA(dadosPopuladosBP, dadosPopuladosDRE));
         indicesDto.getIndicesRentabilidade().setRentabilidadeDoPatrimonioLiquido(calculateRPL(dadosPopuladosDRE));
 
-        //TODO + 3 INDICES
+        // Indices de eficiência, atividade ou rotatividade
+        // Mostram quanto tempo uma empresa leva, em média, para receber o dinheiro oriundo de suas vendas,
+        // para pagar seus fornecedores e para vender seus estoques.
+
+        //A função principal do índice de giro de contas a receber é avaliar a eficiência e a gestão do ciclo de
+        // recebimento da empresa. Ao acompanhar esse indicador ao longo do tempo, é possível identificar se a
+        // empresa está tendo sucesso na cobrança de seus clientes e se está otimizando o prazo médio de recebimento.
+        // Um giro de contas a receber alto indica que a empresa está recebendo os valores devidos mais rapidamente,
+        // o que é positivo, pois reduz o risco de inadimplência e permite que a empresa utilize esses recursos para
+        // suas atividades operacionais ou investimentos. Por outro lado, um giro de contas a receber baixo pode
+        // indicar que a empresa enfrenta dificuldades na cobrança de valores em tempo hábil ou pode estar
+        // concedendo prazos de pagamento muito longos aos clientes.
+        indicesDto.getIndicesEficienciaAtividadeOuRotatividade().setGiroDoContasAReceber(calculateGiroContasAReceber(dadosPopuladosBP, dadosPopuladosDRE));
 
         // Indices de lucratividade
-        indicesDto.getIndicesLucratividade().setMargemBruta(calculateMB(dadosPopuladosDRE));
-        indicesDto.getIndicesLucratividade().setMargemOperacional(calculateMO(dadosPopuladosDRE));
-        indicesDto.getIndicesLucratividade().setMargemEbitda(calculateMargemEbitda(dadosPopuladosBP, dadosPopuladosDRE));
+        // Mostram o lucro auferido pela empresa em relação aos recursos obtidos pelas vendas em um determinado
+        // periodo de tempo.
 
-        // Indices de endividamento
+        // Essa margem revela o quanto a empresa lucrou na operação em relação às vendas líquidas mensurando sua
+        // eficiência no processo de produção. - MARGEM DE FÁBRICA
+        indicesDto.getIndicesLucratividade().setMargemBruta(calculateMB(dadosPopuladosDRE));
+
+        // Essa margem mostra, após deduzir as despesas operacionais, quanto a empresa obteve de resultado em
+        // relação às vendas. - MARGEM DE OPERAÇÃO
+        indicesDto.getIndicesLucratividade().setMargemOperacional(calculateMO(dadosPopuladosDRE));
+
+        // Essa margem mostra quanto da receita líquida de uma empresa é gerada como lucro operacional.
+        // Quanto maior a margem EBITDA, melhor, pois indica que a empresa está conseguindo transformar
+        // uma maior parcela de sua receita líquida em lucro operacional.
+        indicesDto.getIndicesLucratividade().setMargemEbitda(calculateMargemEbitda(dadosPopuladosBP, dadosPopuladosDRE));
 
         return indicesDto;
     }
@@ -96,29 +122,30 @@ public class IndicesService {
         return dre.getLucroLiquido() / plMedio2021E2022;
     }
 
+    private Double calculateGiroContasAReceber(DadosBalancoPatrimonial bp, DadosDre dre) {
+
+        return dre.getReceitaTotal() / bp.getContasReceberLiquidoTotal();
+    }
+
     private Double calculateMB(DadosDre dre) {
+
         return dre.getLucroBruto() / dre.getReceitaTotal();
     }
 
-    //// TODO: 6/28/2023 dúvida prof - lucro operacional
     private Double calculateMO(DadosDre dre) {
+        var lucroOperacional = -(dre.getReceitaTotal() - dre.getCustoReceitasTotal() - dre.getDespesasOperacionaisTotal());
 
-        return dre.getReceitasOperacionaisTotal() / dre.getReceitaTotal();
+        return lucroOperacional / dre.getReceitaTotal();
     }
 
-    // // TODO: 6/28/2023 livro: página 121 - como calcular o EBITDA
-    //// TODO: 6/28/2023 dúvida prof
     private Double calculateMargemEbitda(DadosBalancoPatrimonial bp, DadosDre dre) {
-        //// TODO: 6/29/2023 alex
+        var lucroOperacional = -(dre.getReceitaTotal() - dre.getCustoReceitasTotal() - dre.getDespesasOperacionaisTotal());
+
         var ebitda =
-                dre.getReceitasOperacionaisTotal() +
-                dre.getDespesasOperacionaisTotal() +
-                bp.getAgioLiquido();
+                lucroOperacional +
+                bp.getDepreciacaoAcumulada() +
+                dre.getDepreciacaoAmortizacao();
 
         return ebitda / dre.getReceitaTotal();
     }
 }
-
-//// TODO: 6/28/2023
-//referencias para a doc
-//https://plataforma.bvirtual.com.br/Acervo/Publicacao/1799
